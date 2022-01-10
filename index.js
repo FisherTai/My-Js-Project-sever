@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 const app = express();
 dotenv.config();
 
+const authRoute = require("./routes").authRouter;
+
 //Connect MongoDB
 mongoose
   .connect(process.env.DB_CONNECT, {
@@ -17,8 +19,10 @@ mongoose
     console.log(e);
   });
 
+// middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/user", authRoute);
 
 app.listen(8080, () => {
   console.log("Sever Running on Port 8080.");

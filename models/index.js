@@ -1,4 +1,4 @@
 module.exports = {
-    userModel:require("./user-model"),
-    courseModel:requid("./cour"),
-}
+  userModel: require("./user-model"),
+  courseModel: requid("./cour"),
+};
