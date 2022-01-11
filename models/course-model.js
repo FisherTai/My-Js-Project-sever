@@ -15,7 +15,7 @@ const courseSchema = new mongoose.Schema({
     required: true,
   },
   instructor: {
-    type: moongoose.Schema.Type.ObjectId, //直接把Schema中的ObjectId放進來
+    type: mongoose.Schema.Types.ObjectId, //直接把Schema中的ObjectId放進來
     ref: "User", //跟User做聯結
   },
   student: {
