@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
 dotenv.config();
-
 const authRoute = require("./routes").authRouter;
+const courseRoute = require("./routes").courseRouter;
+const passport = require("passport");
+require("./config/passport")(passport);
 
 //Connect MongoDB
 mongoose
@@ -23,6 +25,11 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/user", authRoute);
+app.use(
+  "/api/course",
+  passport.authenticate("jwt", { session: false }),
+  courseRoute
+); //驗證用戶
 
 app.listen(8080, () => {
   console.log("Sever Running on Port 8080.");
