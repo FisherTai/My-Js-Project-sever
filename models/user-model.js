@@ -39,6 +39,9 @@ userSchema.methods.isInstructor = function () {
   return this.role == "instructor";
 };
 
+userSchema.methods.isAdmin = function () {
+  return this.role == "admin";
+};
 //mongoose schema middleware
 //當進行save操作時先執行此函式
 userSchema.pre("save", async function (next) {
